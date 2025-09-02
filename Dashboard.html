@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Virmatics Ltd Dashboard</title>
+  <link rel="stylesheet" href="Dashboard.css">
+</head>
+<body>
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo">Virmatics Ltd</div>
+    <div class="search-container">
+      <input id="searchBox" type="text" placeholder="Search anything...   🔍">
+      <!-- <button class="icon-btn">🔍</button> -->
+      <button class="icon-btn">🔔</button>
+    </div>
+  </header>
+
+  <!-- Dashboard -->
+  <main class="dashboard">
+    <h1>Dashboard</h1>
+    <!-- <div class="search-container1">
+      <input id="searchBox" type="text" placeholder="Search anything...">
+    </div> -->
+
+    <!-- Removals -->
+    <section>
+      <h2>Removals</h2>
+      <table class="sortable searchable">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Vehicle Registration</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Aahana & Teeyana Co Ltd.</td>
+            <td>100 JN 2025</td>
+            <td>01-01-2025</td>
+          </tr>
+          <tr>
+            <td>Antrix Varun Company Ltd.</td>
+            <td>200 FB 2025</td>
+            <td>02-02-2025</td>
+          </tr>
+          <tr>
+            <td>Blinds.mu Ltd</td>
+            <td>300 MR 2025</td>
+            <td>03-03-2025</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Add button for this section -->
+      <div class="table-controls">
+        <button class="add-row-btn">Add</button>
+      </div>
+    </section>
+
+    <!-- Interventions -->
+    <section>
+      <h2>Interventions</h2>
+      <table class="sortable searchable">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Vehicle Registration</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>BlueMarine Distributions</td>
+            <td>400 AP 2025</td>
+            <td>04-04-2025</td>
+          </tr>
+          <tr>
+            <td>Panagora</td>
+            <td>500 MY 2025</td>
+            <td>05-05-2025</td>
+          </tr>
+          <tr>
+            <td>Deoraj Pallut</td>
+            <td>600 JN 2025</td>
+            <td>06-06-2025</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Add button for this section -->
+      <div class="table-controls">
+        <button class="add-row-btn">Add</button>
+      </div>
+    </section>
+
+    <!-- New Installations -->
+    <section>
+      <h2>New Installations</h2>
+      <table class="sortable searchable">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Vehicle Registration</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fatehmamode Car Rental</td>
+            <td>700 JL 2025</td>
+            <td>07-07-2025</td>
+          </tr>
+          <tr>
+            <td>Golf Garden Co Ltd</td>
+            <td>800 AG 2025</td>
+            <td>08-08-2025</td>
+          </tr>
+          <tr>
+            <td>Sumo Distribution Ltd</td>
+            <td>900 SP 2025</td>
+            <td>09-09-2025</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Add button for this section -->
+      <div class="table-controls">
+        <button class="add-row-btn">Add</button>
+      </div>
+    </section>
+
+    <!-- Remarks -->
+    <section>
+      <h2>Remarks (Incident Reports)</h2>
+      <table class="sortable searchable">
+        <thead>
+          <tr>
+            <th>Company Name</th>
+            <th>Vehicle Registration</th>
+            <th>Date</th>
+            <th>Incident Type</th>
+            <th>Severity</th>
+            <th>Resolution Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Fokeerbux Golden Aluminium Ltd</td>
+            <td>10000 OC 2025</td>
+            <td>10-10-2025</td>
+            <td>Collision</td>
+            <td class="high">High</td>
+            <td>Resolved</td>
+          </tr>
+          <tr>
+            <td>Quincaillerie A1</td>
+            <td>11000 NV 2025</td>
+            <td>11-11-2025</td>
+            <td>Mechanical Failure</td>
+            <td class="medium">Medium</td>
+            <td>In Progress</td>
+          </tr>
+          <tr>
+            <td>Froid Des Mascareignes</td>
+            <td>12000 DC 2025</td>
+            <td>12-12-2025</td>
+            <td>Battery</td>
+            <td class="low">Low</td>
+            <td>Unresolved</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- Add button for this section -->
+      <div class="table-controls">
+        <button class="add-row-btn">Add</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js">
+document.addEventListener('DOMContentLoaded', () => {
+  // 🔎 SEARCH FILTER
+  const searchBox = document.getElementById("searchBox");
+  if (searchBox) {
+    searchBox.addEventListener("keyup", function() {
+      const query = this.value.toLowerCase();
+      const rows = document.querySelectorAll(".searchable tbody tr");
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        row.style.display = text.includes(query) ? "" : "none";
+      });
+    });
+  }
+
+  // ⬆⬇ SORTING
+  document.querySelectorAll(".sortable th").forEach(header => {
+    header.addEventListener("click", () => {
+      const table = header.closest("table");
+      const index = Array.from(header.parentNode.children).indexOf(header);
+      const rows = Array.from(table.querySelectorAll("tbody tr"));
+      const ascending = header.classList.toggle("asc");
+
+      rows.sort((a, b) => {
+        const textA = a.children[index].innerText.trim();
+        const textB = b.children[index].innerText.trim();
+
+        if (!isNaN(Date.parse(textA)) && !isNaN(Date.parse(textB))) {
+          return ascending
+            ? new Date(textA) - new Date(textB)
+            : new Date(textB) - new Date(textA);
+        } else if (!isNaN(textA) && !isNaN(textB)) {
+          return ascending
+            ? Number(textA) - Number(textB)
+            : Number(textB) - Number(textA);
+        } else {
+          return ascending
+            ? textA.localeCompare(textB)
+            : textB.localeCompare(textA);
+        }
+      });
+
+      rows.forEach(row => table.querySelector("tbody").appendChild(row));
+    });
+  });
+
+  // ➕ ADD NEW ROW (adds an editable row with appropriate column count)
+  document.querySelectorAll('.add-row-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const section = btn.closest('section');
+      if (!section) return;
+      const table = section.querySelector('table');
+      if (!table) return;
+      const cols = table.querySelectorAll('thead th').length;
+      const tbody = table.querySelector('tbody');
+      const tr = document.createElement('tr');
+
+      for (let i = 0; i < cols; i++) {
+        const td = document.createElement('td');
+        td.contentEditable = "true";
+        td.spellcheck = false;
+
+        // sensible placeholders for first few columns (company / reg / date), otherwise empty
+        if (i === 0) td.innerText = 'New Company';
+        else if (i === 1) td.innerText = 'New Reg';
+        else if (i === 2) td.innerText = new Date().toLocaleDateString('en-GB');
+        else td.innerText = '';
+
+        tr.appendChild(td);
+      }
+
+      tbody.appendChild(tr);
+      tr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      // focus first cell for quick editing
+      const firstCell = tr.querySelector('td');
+      if (firstCell) {
+        firstCell.focus();
+        // place caret at end
+        const range = document.createRange();
+        range.selectNodeContents(firstCell);
+        range.collapse(false);
+        const sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(range);
+      }
+    });
+  });
+});
+  </script>
+</body>
+</html>
