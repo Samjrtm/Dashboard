@@ -182,6 +182,25 @@
   </main>
 
   <script src="script.js">
+// Fetch and render Removals
+fetch("http://localhost:5000/api/removals")
+  .then(res => res.json())
+  .then(data => {
+    const tbody = document.querySelector("section:nth-of-type(1) tbody");
+    tbody.innerHTML = "";
+    data.forEach(row => {
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td>${row.company}</td>
+        <td>${row.reg}</td>
+        <td>${row.date}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  });
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
   // 🔎 SEARCH FILTER
   const searchBox = document.getElementById("searchBox");
